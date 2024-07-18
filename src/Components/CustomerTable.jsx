@@ -13,7 +13,7 @@ const CustomerTable = ({ customers, transactions, onCustomerClick }) => {
   useEffect(() => {
     setFilteredCustomers(
       customers.filter(customer =>
-        customer.name.toLowerCase().includes(nameFilter.toLowerCase())
+        customer.name.toLowerCase().includes(nameFilter.toLowerCase()) //checking if the name typed in the filter is included in the customer names
       )
     );
   }, [nameFilter, customers]);
@@ -21,11 +21,15 @@ const CustomerTable = ({ customers, transactions, onCustomerClick }) => {
 
   //#region useEffect for creating a customer data array, populating it by for looping the data from customers and transactions and pushing it to it. also filter functionality
   useEffect(() => {
-    let customerDataArray = [];
+    //initializing an empty array to hold the objects
+    let customerDataArray = []; 
+
+    //for looping over the transaction array based on current customers selected
     for (let i = 0; i < customers.length; i++) {
       for (let j = 0; j < transactions.length; j++) {
-        
+        //check to see if the id in customer fits the customer_id in corresponding entry in transactions
         if (customers[i].id == transactions[j].customer_id) {
+          //creating an object, deconstructing relevant data we want to extract into it and pushing it back to customerDataArray to be used
           let obj = {};
           obj.id = transactions[j].id;
           obj.customerid = customers[i].id;
@@ -36,6 +40,8 @@ const CustomerTable = ({ customers, transactions, onCustomerClick }) => {
         }
       }
     }
+
+    //setting filter up based on wether it is written in the name or amount filter
     if (nameFilter) {
       setFilteredCustomers(
         customerDataArray.filter(customerData =>
@@ -55,7 +61,7 @@ const CustomerTable = ({ customers, transactions, onCustomerClick }) => {
     
   }, [nameFilter,amountFilter, customers, transactions]);
   //#endregion
-  
+
   return (
     <div className="container my-4">
     <div className="input-group mb-3">
