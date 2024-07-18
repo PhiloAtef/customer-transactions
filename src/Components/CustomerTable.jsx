@@ -59,6 +59,7 @@ const CustomerTable = ({ customers, transactions, onCustomerClick }) => {
         placeholder="Filter by customer name"
         value={nameFilter}
         onChange={(e) => setNameFilter(e.target.value)}
+        disabled={amountFilter !== ''}
       />
     </div>
     <div className="input-group mb-3">
@@ -68,6 +69,7 @@ const CustomerTable = ({ customers, transactions, onCustomerClick }) => {
         placeholder="Filter by transaction amount"
         value={amountFilter}
         onChange={(e) => setAmountFilter(e.target.value)}
+        disabled={nameFilter !== ''}
       />
     </div>
       <table className="table table-striped table-bordered">
