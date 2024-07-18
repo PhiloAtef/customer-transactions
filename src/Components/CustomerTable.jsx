@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 
+
 const CustomerTable = ({ customers, transactions, onCustomerClick }) => {
 
   //#region states
@@ -89,16 +90,16 @@ const CustomerTable = ({ customers, transactions, onCustomerClick }) => {
           <tr>
             <th>Customer</th>
             <th>Transaction Date</th>
-            <th>Transaction Amount</th>
+            <th>Transaction Amount</th> 
           </tr>
         </thead>
-        <tbody>
+        <tbody >
           {
             filteredCustomers.map(cust => (
-                <tr key={cust.id} onClick={() => onCustomerClick(cust.customerid)} style={{ cursor: 'pointer' }}>
-                <td>{cust.name}</td>
-                <td>{cust.date}</td>
-                <td>{cust.amount}</td>
+                <tr key={cust.id} onClick={() => onCustomerClick(cust.customerid)} style={{ cursor: 'pointer'}} >
+                <td className='cust'>{cust.name}</td>
+                <td className='cust'>{cust.date}</td>
+                <td className='cust'>{cust.amount}</td>
               </tr>
             ))
           }
