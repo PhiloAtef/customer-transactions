@@ -43,9 +43,15 @@ const TransactionGraph = ({ customerId, transactions }) => {
         datasets: [{
           label: 'Total Transaction Amount per Day',
           data: amounts,
-          backgroundColor: 'rgba(75, 192, 192, 0.2)',
-          borderColor: 'rgba(75, 192, 192, 1)',
-          borderWidth: 1
+          backgroundColor: '#D6EFD8',
+          borderColor: '#80AF81',
+          borderWidth: 2,
+          pointRadius: 5,
+          pointStyle : "circle",
+          hitRadius: 10,
+          hoverRadius: 10,
+          hoverBorderWidth: 10,
+          fill: 'origin'  
         }]
       },
       options: {
@@ -53,7 +59,9 @@ const TransactionGraph = ({ customerId, transactions }) => {
           y: {
             beginAtZero: true
           }
+          
         }
+        
       }
     });
   }, [customerId, transactions]);
