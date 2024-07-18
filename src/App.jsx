@@ -5,11 +5,13 @@ import TransactionGraph from "./Components/TransactionGraph.jsx";
 
 
 function App() {
+  //#region states
   const [customers, setCustomers] = useState([]);
   const [transactions, setTransactions] = useState([]);
   const [selectedCustomerId, setSelectedCustomerId] = useState(null);
-  
+  //#endregion
 
+  //#region fetching data
   useEffect(() => {
     fetch('http://localhost:3001/customers')
       .then(response => response.json())
@@ -17,14 +19,15 @@ function App() {
     fetch('http://localhost:3001/transactions')
       .then(response => response.json())
       .then(data => setTransactions(data));
-
-      console.log(transactions);
   }, []);
+  //#endregion
 
+  //#region handlecustomerclick
   const handleCustomerClick = (customerId) => {
     setSelectedCustomerId(customerId);
   };
-
+  //#endregion
+  
   return (
 
     <div className="container">

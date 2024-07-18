@@ -1,8 +1,11 @@
 import React from 'react';
 import { Line } from 'react-chartjs-2';
+import { Chart, registerables } from 'chart.js';
+
+Chart.register(...registerables);
 
 const TransactionGraph = ({ transactions, customerId }) => {
-    console.log(transactions);
+    
   const customerTransactions = transactions.filter(transaction => transaction.customer_id === customerId);
 
   const data = {
