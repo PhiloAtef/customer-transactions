@@ -1,10 +1,10 @@
-import React, { useEffect } from 'react';
+import React, { forwardRef, useEffect } from 'react';
 import { Chart, registerables } from 'chart.js';
 
 //necessary registering for chart.js
 Chart.register(...registerables);
 
-const TransactionGraph = ({ customerId, transactions }) => {
+const TransactionGraph = ({ customerId, transactions },ref) => {
   useEffect(() => {
 
     //filtering transactions
@@ -67,10 +67,10 @@ const TransactionGraph = ({ customerId, transactions }) => {
   }, [customerId, transactions]);
 
   return (
-    <div className="container my-4">
+    <div ref={ref} className="container my-4">
       <canvas id="transactionGraph"></canvas>
     </div>
   );
 };
 
-export default TransactionGraph;
+export default forwardRef(TransactionGraph);

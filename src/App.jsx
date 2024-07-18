@@ -1,14 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import CustomerTable from "./Components/CustomerTable.jsx";
 import TransactionGraph from "./Components/TransactionGraph.jsx";
 
 
 
 function App() {
-  //#region states
+  //#region use statements
   const [customers, setCustomers] = useState([]);
   const [transactions, setTransactions] = useState([]);
   const [selectedCustomerId, setSelectedCustomerId] = useState(null);
+  const ref = useRef(null);
   //#endregion
 
   //#region fetching data
@@ -25,6 +26,7 @@ function App() {
   //#region handlecustomerclick
   const handleCustomerClick = (customerId) => {
     setSelectedCustomerId(customerId);
+    ref.current?.scrollIntoView({behavior : "smooth"})
   };
   //#endregion
   
@@ -39,6 +41,7 @@ function App() {
     />
     {selectedCustomerId && (
       <TransactionGraph 
+        ref = {ref}
         transactions={transactions} 
         customerId={selectedCustomerId} 
       />
