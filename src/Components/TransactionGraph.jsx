@@ -10,7 +10,7 @@ const TransactionGraph = ({ customerId, transactions }) => {
     );
 
     // Aggregate transactions by date
-    const aggregatedData = customerTransactions.reduce((acc, transaction) => {
+    const aggregatedData = customerTransactions?.reduce((acc, transaction) => {
       const date = transaction.date;
       if (!acc[date]) {
         acc[date] = 0;
