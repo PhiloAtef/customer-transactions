@@ -2,11 +2,14 @@ import React, { useState, useEffect } from 'react';
 
 
 const CustomerTable = ({ customers, transactions, onCustomerClick }) => {
+
+  //#region states
   const [nameFilter, setNameFilter] = useState('');
   const [amountFilter, setAmountFilter] = useState('');
   const [filteredCustomers, setFilteredCustomers] = useState(customers);
+  //#endregion
 
-
+  //#region data recall useEffect
   useEffect(() => {
     setFilteredCustomers(
       customers.filter(customer =>
@@ -14,7 +17,9 @@ const CustomerTable = ({ customers, transactions, onCustomerClick }) => {
       )
     );
   }, [nameFilter, customers]);
+//#endregion
 
+  //#region useEffect for creating a customer data array, populating it by for looping the data from customers and transactions and pushing it to it. also filter functionality
   useEffect(() => {
     let customerDataArray = [];
     for (let i = 0; i < customers.length; i++) {
@@ -49,7 +54,8 @@ const CustomerTable = ({ customers, transactions, onCustomerClick }) => {
       }
     
   }, [nameFilter,amountFilter, customers, transactions]);
-
+  //#endregion
+  
   return (
     <div className="container my-4">
     <div className="input-group mb-3">
