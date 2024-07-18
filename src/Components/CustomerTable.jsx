@@ -38,23 +38,6 @@ const CustomerTable = ({ customers, transactions, onCustomerClick }) => {
     );
   }, [filter, customers, transactions]);
 
-// let customerDataArray = [];
-
-// for (let i = 0; i < customers.length; i++) {
-//   for (let j = 0; j < transactions.length; j++) {
-//     if (customers[i].id == transactions[j].customer_id) {
-//       let obj = {}
-//       obj.id = transactions[j].id;
-//       obj.customerid = customers[i].id
-//       obj.name = customers[i].name;
-//       obj.date = transactions[j].date;
-//       obj.amount = transactions[j].amount;
-//       customerDataArray.push(obj)
-//     }
-//   }
-// }
-
-
   return (
     <div className="container my-4">
       <div className="input-group mb-3">
@@ -75,15 +58,6 @@ const CustomerTable = ({ customers, transactions, onCustomerClick }) => {
           </tr>
         </thead>
         <tbody>
-          {/* {filteredCustomers.map(customer => (
-            transactions.map(transaction => (
-              <tr key={transaction.id} onClick={() => onCustomerClick(customer.id)} style={{ cursor: 'pointer' }}>
-                <td>{customer.name}</td>
-                <td>{transaction.date}</td>
-                <td>{transaction.amount}</td>
-              </tr>
-            ))
-          ))} */}
           {
             filteredCustomers.map(cust => (
                 <tr key={cust.id} onClick={() => onCustomerClick(cust.customerid)} style={{ cursor: 'pointer' }}>
