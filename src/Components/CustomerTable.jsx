@@ -14,25 +14,46 @@ const CustomerTable = ({ customers, transactions, onCustomerClick }) => {
     );
   }, [filter, customers]);
 
-  console.log(filteredCustomers)
-
-let customerDataArray = [];
-
-for (let i = 0; i < customers.length; i++) {
-  for (let j = 0; j < transactions.length; j++) {
-    if (customers[i].id == transactions[j].customer_id) {
-      let obj = {}
-      obj.id = transactions[j].id;
-      obj.customerid = customers[i].id
-      obj.name = customers[i].name;
-      obj.date = transactions[j].date;
-      obj.amount = transactions[j].amount;
-      customerDataArray.push(obj)
+  useEffect(() => {
+    let customerDataArray = [];
+    console.log("here1")
+    for (let i = 0; i < customers.length; i++) {
+      for (let j = 0; j < transactions.length; j++) {
+        
+        if (customers[i].id == transactions[j].customer_id) {
+          let obj = {};
+          obj.id = transactions[j].id;
+          obj.customerid = customers[i].id;
+          obj.name = customers[i].name;
+          obj.date = transactions[j].date;
+          obj.amount = transactions[j].amount;
+          customerDataArray.push(obj);      
+        }
+      }
     }
-  }
-}
+    setFilteredCustomers(
+      customerDataArray.filter(customerData =>
+        customerData.name.toLowerCase().includes(filter.toLowerCase())
+      )
+    );
+  }, [filter, customers, transactions]);
 
-console.log(customerDataArray)
+// let customerDataArray = [];
+
+// for (let i = 0; i < customers.length; i++) {
+//   for (let j = 0; j < transactions.length; j++) {
+//     if (customers[i].id == transactions[j].customer_id) {
+//       let obj = {}
+//       obj.id = transactions[j].id;
+//       obj.customerid = customers[i].id
+//       obj.name = customers[i].name;
+//       obj.date = transactions[j].date;
+//       obj.amount = transactions[j].amount;
+//       customerDataArray.push(obj)
+//     }
+//   }
+// }
+
 
   return (
     <div className="container my-4">
@@ -64,7 +85,7 @@ console.log(customerDataArray)
             ))
           ))} */}
           {
-            customerDataArray.map(cust => (
+            filteredCustomers.map(cust => (
                 <tr key={cust.id} onClick={() => onCustomerClick(cust.customerid)} style={{ cursor: 'pointer' }}>
                 <td>{cust.name}</td>
                 <td>{cust.date}</td>
